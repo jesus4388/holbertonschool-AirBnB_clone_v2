@@ -15,7 +15,7 @@ class FileStorage:
         new = {}
         for key, value in FileStorage.__objects.items():
             if cls == value.__class__:
-                new[key] = key
+                new[key] = value
         return new
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -58,7 +58,7 @@ class FileStorage:
         if obj != None:
             for key, value in FileStorage.__objects.items():
                 if obj == value:
-                    del FileStorage.__ojects[key]
+                    del FileStorage.__objects[key]
                 break;
         else:
             return
