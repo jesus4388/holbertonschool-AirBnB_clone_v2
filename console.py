@@ -128,8 +128,7 @@ class HBNBCommand(cmd.Cmd):
             for i in my_list[1:]:
                 token = i.split("=")
                 parameter = my_list[0] + " " + new_instance.id + " "
-                parameter = parameter + token[0] + " " 
-                parameter = parameter + token[1]
+                parameter = parameter + token[0] + " " + token[1]
                 HBNBCommand.do_update(self, parameter)
         print(new_instance.id)
         storage.save()
