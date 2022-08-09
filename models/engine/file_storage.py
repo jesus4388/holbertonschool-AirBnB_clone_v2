@@ -60,5 +60,5 @@ class FileStorage:
             return
         for key, value in FileStorage.__objects.items():
             if obj == value:
-                del FileStorage.__objects[key]
-            break
+                FileStorage.__objects.pop(key)
+                break
