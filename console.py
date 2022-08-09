@@ -292,6 +292,7 @@ class HBNBCommand(cmd.Cmd):
             # check for quoted val arg
             if args[2] and args[2][0] == '\"':
                 att_val = args[2][1:args[2].find('\"', 1)]
+                att_val = att_val.replace("_"," ")
 
             # if att_val was not quoted arg
             if not att_val and args[2]:
