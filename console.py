@@ -125,11 +125,29 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[my_list[0]]()
         storage.save()
         if len(my_list) > 1:
+            flag = 0
             for i in my_list[1:]:
                 token = i.split("=")
-                parameter = my_list[0] + " " + new_instance.id + " "
-                parameter = parameter + token[0] + " " + token[1]
-                HBNBCommand.do_update(self, parameter)
+                try:
+                    int(token[1])
+                    flag = 1
+                except Exception:
+                    pass
+                if flag != 1:
+                    try:
+                        float(token[1])
+                        flag = 2
+                    except Exception:
+                        pass
+                if flag == 1:
+                    token[1] = int(token[1])
+                elif flag == 2:
+                    token[1] = float(token[1])
+                else:
+                    token[1] = token[1].replace("_", " ")
+                    token[1] = token[1].replace('"', "")
+                setattr(new_instance, token[0], token[1])
+        storage.new(new_instance)
         print(new_instance.id)
         storage.save()
 
@@ -213,11 +231,11 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
+            for k, v in storage.all().items():
                 print_list.append(str(v))
 
         print(print_list)
