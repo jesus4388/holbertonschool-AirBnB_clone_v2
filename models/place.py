@@ -27,6 +27,9 @@ class Place(BaseModel, Base):
     else:
         @property
         def reviews(self):
+            listin = []
             for key, value in FileStorage.all(Review):
-                if self.id == place_id:
-                    print(helllloooooooooooooooo)
+                if self.id == review.place_id:
+                    listin[key] = value
+            return(listin)
+                    
