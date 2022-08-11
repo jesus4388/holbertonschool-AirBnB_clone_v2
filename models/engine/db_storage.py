@@ -45,7 +45,6 @@ class DBStorage:
         for obj in objs:
             key = ("{}.{}".format(type(obj).__name__, obj.id))
             dic[key] = obj
-        session.close()
         return dic
 
     def new(self, obj):
