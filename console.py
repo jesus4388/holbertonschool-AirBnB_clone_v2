@@ -140,6 +140,7 @@ class HBNBCommand(cmd.Cmd):
                     token[1] = token[1].replace('_', ' ')
                     token[1] = token[1].replace('"', '')
                     setattr(new_instance, token[0], token[1])
+                    continue
         storage.new(new_instance)
         print(new_instance.id)
         storage.save()
