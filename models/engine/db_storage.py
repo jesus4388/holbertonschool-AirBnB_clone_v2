@@ -4,7 +4,7 @@
 import os
 from sqlalchemy.orm import Session, scoped_session, relationship
 from sqlalchemy import create_engine
-from models.base_model import Base
+from models.base_model import BaseModel, Base
 from sqlalchemy.orm import sessionmaker
 from models.user import User
 from models.state import State
@@ -28,7 +28,7 @@ class DBStorage:
             os.getenv("HBNB_MYSQL_DB"),
             pool_pre_ping=True))
         if os.getenv("HBNB_ENV") == "test":
-            Base.metada.drop_all(bind=self.__engine)
+            Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
