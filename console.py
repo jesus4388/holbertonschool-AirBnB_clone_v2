@@ -137,8 +137,8 @@ class HBNBCommand(cmd.Cmd):
                     setattr(new_instance, token[0], float(token[1]))
                     continue
                 except Exception:
-                    token[1] = token[1].replace("_", " ")
-                    token[1] = token[1].replace('"', "")
+                    token[1] = token[1].replace('_', ' ')
+                    token[1] = token[1].replace('"', '\\"')
                     setattr(new_instance, token[0], token[1])
         storage.new(new_instance)
         print(new_instance.id)
