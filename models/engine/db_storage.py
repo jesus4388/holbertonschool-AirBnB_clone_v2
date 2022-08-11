@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'# New engine DBStorage'
+""" New engine DBStorage """
 
 import os
 from sqlalchemy.orm import Session, scoped_session, relationship
@@ -15,7 +15,7 @@ from models.review import Review
 
 
 class DBStorage:
-    '#private class attribute'
+    """ private class attribute """
     __engine = None
     __session = None
 
@@ -45,6 +45,7 @@ class DBStorage:
         for obj in objs:
             key = ("{}.{}".format(type(obj).__name__, obj.id))
             dic[key] = obj
+        session.close()
         return dic
 
     def new(self, obj):
