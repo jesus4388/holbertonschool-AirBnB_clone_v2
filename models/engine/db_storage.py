@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '# New engine DBStorage'
 
-
 import os
 from sqlalchemy.orm import Session, scoped_session, relationship
 from sqlalchemy import create_engine
@@ -36,7 +35,7 @@ class DBStorage:
         objs = []
         dic = {}
         if cls is None:
-            str_clases = ['State', 'City']
+            str_clases = ['State', 'City', 'User', 'Amenity', 'Place', 'Review']
             for str in str_clases:
                 resul = self.__session.query(eval(str)).all()
                 for obj in resul:
