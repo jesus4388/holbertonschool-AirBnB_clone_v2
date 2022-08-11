@@ -125,9 +125,9 @@ class HBNBCommand(cmd.Cmd):
         new_instance = HBNBCommand.classes[my_list[0]]()
         storage.save()
         if len(my_list) > 1:
-            flag = 0
             for i in my_list[1:]:
                 token = i.split("=")
+                flag = 0;
                 try:
                     int(token[1])
                     flag = 1
