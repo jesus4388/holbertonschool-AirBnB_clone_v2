@@ -129,24 +129,17 @@ class HBNBCommand(cmd.Cmd):
                 token = i.split("=")
                 flag = 0;
                 try:
-                    int(token[1])
-                    flag = 1
+                    setattr(new_instance, token[0], int(token[1]))
+                    continue
                 except Exception:
                     pass
-                if flag != 1:
-                    try:
-                        float(token[1])
-                        flag = 2
-                    except Exception:
-                        pass
-                if flag == 1:
-                    token[1] = int(token[1])
-                elif flag == 2:
-                    token[1] = float(token[1])
-                else:
+                try:
+                    setattr(new_instance, token[0], float(token[1]))
+                    continue
+                except Exception:
                     token[1] = token[1].replace("_", " ")
                     token[1] = token[1].replace('"', "")
-                setattr(new_instance, token[0], token[1])
+                    setattr(new_instance, token[0], token[1])
         storage.new(new_instance)
         print(new_instance.id)
         storage.save()
