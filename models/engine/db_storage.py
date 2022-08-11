@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 '# New engine DBStorage'
+
+
 import os
 from sqlalchemy.orm import Session, scoped_session, relationship
 from sqlalchemy import create_engine
 from models.base_model import Base
 from sqlalchemy.orm import sessionmaker
-from models.user import User 
+from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
@@ -18,9 +20,8 @@ class DBStorage:
     __engine = None
     __session = None
 
-
     def __init__(self):
-        """ metodo constructor """
+        """ metodo constructor init"""
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(
             os.getenv("HBNB_MYSQL_USER"),
             os.getenv("HBNB_MYSQL_PWD"),
@@ -46,7 +47,7 @@ class DBStorage:
             key = ("{}.{}".format(type(obj).__name__, obj.id))
             dic[key] = obj
         return dic
-    
+
     def new(self, obj):
         """ add the object to the current database session """
         self.__session.add(obj)
@@ -57,12 +58,13 @@ class DBStorage:
 
     def delete(self, obj=None):
         """ delete from the current database session """
-        if not obj is None:
+        if obj is not None:
             self.__session.delete()
 
     def reload(self):
         """ create all tables in the database """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(
+                bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
