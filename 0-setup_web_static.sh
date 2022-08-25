@@ -5,7 +5,7 @@ sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 sudo touch /data/web_static/releases/test/index.html
-printf "<html>
+echo "<html>
   <head>
   </head>
   <body>
