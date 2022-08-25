@@ -14,5 +14,5 @@ echo "<html>
 </html>" | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/ 
-sudo sed -i '/listen 80 default_server;/a locacion /hbnb_static {alias /data/web_static/current: autoindex off; }' /etc/nginx/sites-available/default 
-sudo service nginx restart
+sudo sed -i '/listen 80 default_server;/a locacion /hbnb_static {alias /data/web_static/current;}' /etc/nginx/sites-available/default 
+sudo /etc/init.d/nginx restart
