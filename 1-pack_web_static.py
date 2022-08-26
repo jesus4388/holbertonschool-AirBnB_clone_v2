@@ -8,9 +8,9 @@ from fabric.api import local
 def do_pack():
     '# compress file'
     try:
-        date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+        d = datetime.utcnow().strftime('%Y%m%d%H%M%S')
         local("sudo mkdir -p versions")
-        local("sudo tar -cvzf versions/web_static_{}.tgz web_static".format(date))
-        return "versions/web_static_{}.tgz web_static".format(date)
+        local("sudo tar -cvzf versions/web_static_{}.tgz web_static".format(d))
+        return "versions/web_static_{}.tgz web_static".format(d)
     except Exception:
         return None
