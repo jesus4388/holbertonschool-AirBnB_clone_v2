@@ -20,6 +20,6 @@ def hbnb():
 def variable(text):
     return 'C {}'.format(text.replace("_", " "))
     """routes text"""
-    
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
