@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 import models
 import os
+import models
 
 class State(BaseModel, Base):
     """ State class """
@@ -12,7 +13,7 @@ class State(BaseModel, Base):
 
     name = Column(String(128), nullable=False)
 
-    if os.getenv("HBNB_TYPE_STORAGE=db") != "db":
+    if os.getenv("HBNB_TYPE_STORAGE") == "fs":
         @property
         def cities(self):
             citylist = []
@@ -21,4 +22,6 @@ class State(BaseModel, Base):
                 if value.state_id == self.id:
                     citylist.append(value)
             return citylist
-    cities = relationship("City", cascade = "all,delete", backref="state")
+
+    if os.getenv("HBNB_TYPE_STORAGE") == "fs": 
+    	cities = relationship("City", cascade = "all,delete", backref="state")
