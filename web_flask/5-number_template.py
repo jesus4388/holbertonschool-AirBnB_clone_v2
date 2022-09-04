@@ -38,7 +38,7 @@ def _integr(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def dis_html(n):
     """display a html if n is a intger"""
-    return render_template('5-number.html', title = "HBNB", Number = n)
+    return render_template('5-number.html', title="HBNB", Number=n)
 
 
 if __name__ == "__main__":
