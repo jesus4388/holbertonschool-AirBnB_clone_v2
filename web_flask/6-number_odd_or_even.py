@@ -45,10 +45,14 @@ def dis_html(n):
 def odd_or_event(n):
     """ display if n is even|odd """
     if (n % 2) == 0:
-        return render_template('6-number_odd_or_even.html', title="HBNB",
-                              Number="{} is even".format(n))
+        return render_template(
+                '6-number_odd_or_even.html', title="HBNB",
+                Number="{} is even".format(n))
     else:
-        return render_template('6-number_odd_or_even.html', title="HBNB",
-                              Number="{} is odd".format(n))
+        return render_template(
+                '6-number_odd_or_even.html', title="HBNB",
+                Number="{} is odd".format(n))
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
