@@ -25,6 +25,7 @@ def variable(text):
 @app.route('/python/',defaults={'text':'is_cool'})
 @app.route('/python/<text>', strict_slashes=False)
 def _python(text):
+    """ default value """
     return 'Python {}'.format(text.replace("_", " "))
 
 if __name__ == "__main__":
