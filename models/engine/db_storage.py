@@ -34,7 +34,6 @@ class DBStorage:
         """Returns a dictionary of models currently in storage"""
         objs = []
         dic = {}
-        print(cls)
         if cls is not None:
             objs = self.__session.query(cls)
             for obj in objs:
@@ -43,12 +42,9 @@ class DBStorage:
         else:
             for _str in ['State', 'City', 'Place', 'User', 'Review']:
                 resul = self.__session.query(eval(_str)).all()
-                print(resul)
-                print(_str)
                 for obj in resul:
                     key = _str + "." + obj.id
                     dic[key] = obj
-                    print(dic)
         return dic
 
     def new(self, obj):
