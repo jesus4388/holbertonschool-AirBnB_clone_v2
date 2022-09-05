@@ -6,6 +6,7 @@ from sqlalchemy import Column, String, ForeignKey, Integer, Float
 from sqlalchemy.orm import relationship
 import os
 
+
 class Place(BaseModel, Base):
     """ A place to stay """
 
@@ -21,7 +22,8 @@ class Place(BaseModel, Base):
         price_by_night = Column(Integer, default=0, nullable=False)
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
-        reviews = relationship("Review", cascade="all, delete", backref="place")
+        reviews = relationship(
+                "Review", cascade="all, delete", backref="place")
     else:
         name = ""
 
@@ -32,4 +34,3 @@ class Place(BaseModel, Base):
                 if self.id == review.place_id:
                     listin[key] = value
             return(listin)
-                    
