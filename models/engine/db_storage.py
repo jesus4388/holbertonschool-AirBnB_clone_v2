@@ -34,17 +34,21 @@ class DBStorage:
         """Returns a dictionary of models currently in storage"""
         objs = []
         dic = {}
-        if cls is None:
-            str_clases = ['State', 'City', 'Place', 'User', 'Review']
-            for str in str_clases:
-                resul = self.__session.query(eval(str)).all()
-                for obj in resul:
-                    objs.append(obj)
+        print(cls)
+        if cls is not None:
+            objs = self.__session.query(cls)
+            for obj in objs:
+                key = ("{}.{}".format(type(cls).__name__, obj.id))
+                dic[key] = obj
         else:
-            objs = self.__session.query(objs).all()
-        for obj in objs:
-            key = ("{}.{}".format(type(obj).__name__, obj.id))
-            dic[key] = obj
+            for _str in ['State', 'City', 'Place', 'User', 'Review']:
+                resul = self.__session.query(eval(_str)).all()
+                print(resul)
+                print(_str)
+                for obj in resul:
+                    key = _str + "." + obj.id
+                    dic[key] = obj
+                    print(dic)
         return dic
 
     def new(self, obj):
@@ -70,4 +74,4 @@ class DBStorage:
 
     def close(self):
         """ method on the private session attribute """
-        self.__session()
+        self.__session.close()
